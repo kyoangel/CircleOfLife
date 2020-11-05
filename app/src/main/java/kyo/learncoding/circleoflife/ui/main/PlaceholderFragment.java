@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -42,17 +44,33 @@ public class PlaceholderFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
-        final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = null;
+        switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+            case 1:
+                root = inflater.inflate(R.layout.fragment_role_setting, container, false);
+
+                Spinner spinner1 = (Spinner) root.findViewById(R.id.spinner1);
+                Spinner spinner2 = (Spinner) root.findViewById(R.id.spinner2);
+                Spinner spinner3 = (Spinner) root.findViewById(R.id.spinner3);
+                Spinner spinner4 = (Spinner) root.findViewById(R.id.spinner4);
+                Spinner spinner5 = (Spinner) root.findViewById(R.id.spinner5);
+                Spinner spinner6 = (Spinner) root.findViewById(R.id.spinner6);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                        R.array.points, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                spinner1.setAdapter(adapter);
+                spinner2.setAdapter(adapter);
+                spinner3.setAdapter(adapter);
+                spinner4.setAdapter(adapter);
+                spinner5.setAdapter(adapter);
+                spinner6.setAdapter(adapter);
+                break;
+            case 2:
+                root = inflater.inflate(R.layout.fragment_graph, container, false);
+                break;
+        }
         return root;
     }
 }

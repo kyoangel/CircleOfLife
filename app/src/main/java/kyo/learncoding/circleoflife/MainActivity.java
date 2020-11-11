@@ -1,32 +1,18 @@
 package kyo.learncoding.circleoflife;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.util.AttributeSet;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import org.json.JSONObject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 
-import java.io.Console;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 import kyo.learncoding.circleoflife.model.RoleOfCircle;
 import kyo.learncoding.circleoflife.ui.main.SectionsPagerAdapter;
 
@@ -42,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString(keyName, gson.toJson(roleOfCircle));
                     editor.apply();
                 }
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
